@@ -5,6 +5,10 @@
 package examen.pkg3;
 
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Examen3{
     private enum Estado {
@@ -188,11 +192,70 @@ public class Examen3{
 
     public static void main(String[] args) {
         Examen3 cadena = new Examen3();
-        Scanner leer=new Scanner(System.in);
-        String entrada;
-            entrada=leer.nextLine();
-            Valido valido = cadena.analizar(entrada);
-            System.out.println(CadenaSalida);  
-            System.out.println(valido);
+//        Scanner leer=new Scanner(System.in);
+//        String entrada;
+//        entrada=leer.nextLine();
+//        
+//        String[] elementos = entrada.split("\\s+|\n");
+
+        // Mostrar los elementos
+//        System.out.println("Elementos separados:");
+//        for (String elemento : elementos) {
+//            System.out.println(elemento);
+//        }
+        String filePath = "archivo.txt";
+
+        try {
+            // Crear un objeto File que representa el archivo de texto
+            File file = new File(filePath);
+
+            // Crear un objeto FileReader para leer el archivo
+            FileReader fr = new FileReader(file);
+
+            // Crear un objeto BufferedReader para leer líneas de texto de manera eficiente
+            BufferedReader br = new BufferedReader(fr);
+
+            // Variable para almacenar el contenido del archivo
+            StringBuilder contenido = new StringBuilder();
+
+            // Leer el archivo línea por línea y almacenar el contenido en el StringBuilder
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenido.append(linea).append("\n");
+            }
+
+            // Cerrar el BufferedReader
+            br.close();
+
+            // Convertir el contenido a una cadena de strings
+            String contenidoString = contenido.toString();
+
+            // Mostrar el contenido del archivo
+            System.out.println("Contenido del archivo:");
+            System.out.println(contenidoString);
+
+            // Separar la cadena en un arreglo de strings
+            String[] lines = contenidoString.split("\n");
+            String[] elementos = contenidoString.split("\\s+|\n");
+            System.out.println("lineas separadas:");
+            for (String line : lines) {
+                System.out.println(line);
+            }
+            System.out.println("");
+
+            // Mostrar los elementos
+            System.out.println("Elementos separados:");
+            for (String elemento : elementos) {
+                System.out.println(elemento);
+            }
+        } catch (IOException e) {
+            // Manejar posibles excepciones de E/S
+            e.printStackTrace();
+        }
+        
+        
+//        Valido valido = cadena.analizar(entrada);
+//        System.out.println(CadenaSalida);  
+//        System.out.println(valido);
     }
 }
