@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package examen.pkg3;
 
-import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Examen3{
     private enum Estado {
@@ -156,17 +150,9 @@ public class Examen3{
             case q9:
                 if (elemento.matches("^[A-Z][a-zA-Z]+,$")) {
                     estadoActual = Estado.q11;
-                    CadenaSalida = CadenaSalida + "q11 ";
-                    
+                    CadenaSalida = CadenaSalida + "q11 ";    
                 } 
                 break;
-//            case q10:
-//                if (elemento.matches("")) {
-//                    estadoActual = Estado.q11;
-//                    CadenaSalida = CadenaSalida + "q11 ";
-//                    
-//                } 
-//                break;
             case q11:
                 if (elemento.matches("^[A-Z]{2}$")) {
                     estadoActual = Estado.q12;
@@ -194,71 +180,32 @@ public class Examen3{
     public static void main(String[] args) {
         Examen3 cadena = new Examen3();
         String[] cadena3 = {};
-//        Scanner leer=new Scanner(System.in);
-//        String entrada;
-//        entrada=leer.nextLine();
-//        
-//        String[] elementos = entrada.split("\\s+|\n");
-
-        // Mostrar los elementos
-//        System.out.println("Elementos separados:");
-//        for (String elemento : elementos) {
-//            System.out.println(elemento);
-//        }
         String filePath = "archivo.txt";
 
         try {
-            // Crear un objeto File que representa el archivo de texto
             File file = new File(filePath);
-
-            // Crear un objeto FileReader para leer el archivo
             FileReader fr = new FileReader(file);
-
-            // Crear un objeto BufferedReader para leer líneas de texto de manera eficiente
             BufferedReader br = new BufferedReader(fr);
-
-            // Variable para almacenar el contenido del archivo
             StringBuilder contenido = new StringBuilder();
-
-            // Leer el archivo línea por línea y almacenar el contenido en el StringBuilder
             String linea;
             while ((linea = br.readLine()) != null) {
                 contenido.append(linea).append("\n");
             }
-
-            // Cerrar el BufferedReader
             br.close();
-
-            // Convertir el contenido a una cadena de strings
             String contenidoString = contenido.toString();
-
-            // Mostrar el contenido del archivo
-            //System.out.println("Contenido del archivo:");
-            //System.out.println(contenidoString);
-
-            // Separar la cadena en un arreglo de strings
             String[] lines = contenidoString.split("\n");
             String cadena2="";
-            //System.out.println("lineas separadas:");
             for (String line : lines) {
-                //System.out.println(line);
                 cadena2 = cadena2 + line + " <SaltoDeLinea> ";
             }
-            //System.out.println("");
-            //System.out.println(cadena2);
-            //System.out.println("");
             cadena3 = cadena2.split("\\s");
-            // Mostrar los elementos
-            System.out.println("Elementos separados:");
+            System.out.println("Tokens:");
             for (String elemento : cadena3) {
                 System.out.println(elemento);
             }
         } catch (IOException e) {
-            // Manejar posibles excepciones de E/S
             e.printStackTrace();
         }
-        
-        
         Valido valido = cadena.analizar(cadena3);
         System.out.println(CadenaSalida);  
         System.out.println("La direccion es: "+valido);
